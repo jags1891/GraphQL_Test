@@ -1,13 +1,14 @@
-import {buildSchema} from 'graphql';
+import {makeExecutableSchema} from 'graphql-tools';
+import {resolvers} from './resolver';
 
-const schema = buildSchema (`
+const typeDefs =`
         type Friend {
             id : ID,
             firstName : String,
             lastName : String,
             gender : Gender,
-            email : String
-
+            email : String,
+            contacts : [Contact]
         }
 
         type Query {
@@ -18,6 +19,12 @@ const schema = buildSchema (`
             email : String
         }
 
+        type Contact {
+            firstName : String,
+            gender : Gender,
+            email : String
+        }
+
         enum Gender {
             MALE,
             FEMALE,
@@ -25,10 +32,18 @@ const schema = buildSchema (`
         }
 
         input FriendInput {
-            id : ID,
-            firstName : String,
-            lastName : String,
-            gender : Gender,
+            id : ID
+            firstName : String
+            lastName : String
+            gender : Gender
+            email : String
+            contacts : [ContactInput]
+        }
+
+        input ContactInput {
+            firstName : String
+            lastName : String
+            gender : Gender
             email : String
         }
 
@@ -36,6 +51,8 @@ const schema = buildSchema (`
             createFriend(input: FriendInput) : Friend
         }
 
-    `)
+    `;
 
-export default schema;
+const schema = makeExecutableSchema({typeDefs, resolvers});
+
+export {schema};

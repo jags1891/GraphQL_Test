@@ -1,7 +1,7 @@
 import express from 'express';
-import schema from './schema';
+import {schema} from './schema';
 import { graphqlHTTP } from 'express-graphql';
-import resolvers from './resolver'
+
 
 
 
@@ -10,11 +10,9 @@ app.get('/', (req, res) => {
     res.send('GraphQL is amazing');
 });
 
-const root = resolvers;
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
-    rootValue: root,
     graphiql: true,
 }));
 
