@@ -6,12 +6,16 @@ const schema = buildSchema (`
             firstName : String,
             lastName : String,
             gender : String,
-            email : String
+            email : [Email] !
 
         }
 
         type Query {
             friend : Friend
+        }
+
+        type Email {
+            email : String
         }
     `)
 
