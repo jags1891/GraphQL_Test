@@ -10,7 +10,6 @@ class Friend {
 
 const friendDatabase = {};
 
-
 const resolvers = { 
     getFriend: ({id}) => {
         return new Friend(id, friendDatabase[id]);
@@ -22,5 +21,5 @@ const resolvers = {
     }
 
 };
-
+export default resolvers;
 
