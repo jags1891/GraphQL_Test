@@ -7,4 +7,8 @@ create .babelrc
 install graphql tools
 npm install graphql-tools
 
+Persistance
+npm install mongoose
+npm install sqlite3 sequelize lodash casual
+
 
